@@ -9,7 +9,9 @@
 	"dependencies": {
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.2",
-		"react-native-navigation": "^1.1.205"
+		"react-native-navigation": "^1.1.205",
+		"react-redux": "^5.0.6",
+		"redux": "^3.7.2"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
