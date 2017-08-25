@@ -1,47 +1,59 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
+
+import { Navigation } from 'react-native-navigation'
+import { registerScreens } from './screens'
+
+registerScreens()
+
+const navigatorStyle = {
+	navBarTranslucent: true,
+	drawUnderNavBar: true,
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white',
+	statusBarTextColorScheme: 'light',
+	drawUnderTabBar: true
+};
+
+const tabs = [{
+    label: 'Episodes',
+    screen: 'OpenCasts.Episodes',
+    title: 'Podcasts',
+    navigatorStyle
+},
+{
+    label: 'Discover',
+    screen: 'OpenCasts.Search',
+    title: 'Discover',
+    navigatorStyle
+}]
+
+const tabStyles = {
+    tabBarButtonColor: '#C62828',
+    tabBarSelectedButtonColor: '#F44336',
+    tabBarBackgroundColor: '#F8F8F8'
+}
 
 class OpenCasts extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
+  constructor(props) {
+      super(props)
+      this.startApp()
+  }
+
+  startApp() {
+    Navigation.startTabBasedApp({
+        tabs,
+        tabsStyle: tabStyles,
+        appStyle: {
+            orientation: 'portrait'
+        }
+    })
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-module.exports = OpenCasts
+export default OpenCasts
