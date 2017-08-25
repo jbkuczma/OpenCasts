@@ -1,0 +1,3 @@
+rootProject.name = 'OpenCasts'
+
+include ':app'
