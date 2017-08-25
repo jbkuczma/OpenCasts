@@ -1,24 +1,25 @@
 import React, { Component, PropTypes } from 'react'
 import {
 	Text,
-	View
+    View,
+    StyleSheet
 } from 'react-native'
 
 export default class Episodes extends Component {
-
-    static navigatorStyle = {
-        navBarBackgroundColor: '#F8F8F8'
-    }
     
     render() {
         return (
-            <View>
-                <Text> unplayed </Text>
+            <View style={styles.container}>
+                <Text> test </Text>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
-Episodes.propTypes = {
-    navigator: PropTypes.object
-}

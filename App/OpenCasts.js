@@ -6,54 +6,30 @@ import {
   View
 } from 'react-native'
 
-import { Navigation } from 'react-native-navigation'
-import { registerScreens } from './screens'
+import Episodes from './Views/Episodes/Episodes'
+import Search from './Views/Search/Search'
+import Player from './Views/Player/Player'
 
-registerScreens()
+import { 
+    Modal,
+    Stack, 
+    Scene, 
+    Router 
+} from 'react-native-router-flux'
 
-const navigatorStyle = {
-	navBarTranslucent: true,
-	drawUnderNavBar: true,
-	navBarTextColor: 'white',
-	navBarButtonColor: 'white',
-	statusBarTextColorScheme: 'light',
-	drawUnderTabBar: true
-};
-
-const tabs = [{
-    label: 'Episodes',
-    screen: 'OpenCasts.Episodes',
-    title: 'Podcasts',
-    navigatorStyle
-},
-{
-    label: 'Discover',
-    screen: 'OpenCasts.Search',
-    title: 'Discover',
-    navigatorStyle
-}]
-
-const tabStyles = {
-    tabBarButtonColor: '#C62828',
-    tabBarSelectedButtonColor: '#F44336',
-    tabBarBackgroundColor: '#F8F8F8'
-}
-
-class OpenCasts extends Component {
-  constructor(props) {
-      super(props)
-      this.startApp()
-  }
-
-  startApp() {
-    Navigation.startTabBasedApp({
-        tabs,
-        tabsStyle: tabStyles,
-        appStyle: {
-            orientation: 'portrait'
-        }
-    })
+export default class OpenCasts extends Component {
+  
+  render() {
+      return (
+        <Router>
+            <Stack key="root">
+                <Scene key="episodes" component={Episodes} title="Podcasts" />
+                <Scene key="search" component={Search} title="Discover" back/>
+                <Modal>
+                    <Scene key="episodes" component={Player} title="Podcasts" />
+                </Modal>
+            </Stack>
+        </Router>                  
+      )
   }
 }
-
-export default OpenCasts

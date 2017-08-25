@@ -4,13 +4,17 @@ import {
 	View
 } from 'react-native'
 
-export default class Player extends Component {
+export default class EpisodeGridCell extends Component {
 
     render() {
         return (
             <View>
-                <Text> Search </Text>
+                <Text> cell </Text>
             </View>
         )
     }
+}
+
+Episodes.propTypes = {
+    navigator: PropTypes.object
 }
