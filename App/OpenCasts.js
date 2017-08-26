@@ -32,6 +32,18 @@ const searchIcon = () => {
     )
 }
 
+const backIcon = () => {
+    return (
+        <Image 
+            source={require('./Assets/back.png')} 
+            style={{
+                width: 30,
+                height: 30
+            }}
+        />
+    )
+}
+
 export default class OpenCasts extends Component {
   
   render() {
@@ -39,8 +51,8 @@ export default class OpenCasts extends Component {
         <Router>
             <Stack key="modal" modal hideNavBar>
                 <Stack key="root" hideNavBar={false} >
-                    <Scene key="episodes" component={Episodes} title="Podcasts" titleStyle={style.episodesTitleStyle} rightTitle={searchIcon} onRight={() => Actions.search()} initial />
-                    <Scene key="search" component={Search} title="Discover" back />
+                    <Scene key="episodes" component={Episodes} title="Podcasts" titleStyle={style.openCastsTitleStyle} rightTitle={searchIcon} onRight={() => Actions.search()} initial />
+                    <Scene key="search" component={Search} title="Discover" titleStyle={style.openCastsTitleStyle} leftTitle={backIcon} onLeft={() => Actions.pop()} />
                     <Scene key="episode" component={Episode} back />
                 </Stack>
                 <Scene key="player" component={Player} hideNavBar />
@@ -51,7 +63,7 @@ export default class OpenCasts extends Component {
 }
 
 const style = StyleSheet.create({
-    episodesTitleStyle: {
+    openCastsTitleStyle: {
         color: '#F44336'
     }
 })
