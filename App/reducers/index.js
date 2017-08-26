@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import opencasts from './opencasts'
 
-const OpenCasts = combineReducers({
+const OpenCastsApp = combineReducers({
     opencasts
 })
 
-export default OpenCasts
+export default OpenCastsApp

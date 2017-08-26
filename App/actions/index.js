@@ -35,4 +35,28 @@ export const searchResults = (results) => ({
     type: 'SEARCH_RESULTS',
     results
 })
+
+export const getPopularPodcsts = () => {
+    return (disptach) => {
+        return fetch().then((searchResults) => {
+            disppatch(getPopularPodcastsResults(searchResults))
+        })
+    }
+}
+export const getPopularPodcastsResults = (results) => ({
+    type: 'POPULAR_PODCST_RESULTS',
+    results
+})
+
+export const getCategories = () => {
+    return (disptach) => {
+        return fetch().then((searchResults) => {
+            disppatch(getCategoriesResults(searchResults))
+        })
+    }
+}
+export const getCategoriesResults = (results) => ({
+    type: 'CATEGORY_RESULTS',
+    results
+})
 /*****************************************/
