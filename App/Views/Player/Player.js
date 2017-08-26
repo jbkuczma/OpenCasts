@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {
 	Text,
-	View
+    View
 } from 'react-native'
 
 export default class Player extends Component {
@@ -9,7 +9,7 @@ export default class Player extends Component {
     render() {
         return (
             <View>
-                <Text> Search </Text>
+                <Text> player </Text>
             </View>
         )
     }

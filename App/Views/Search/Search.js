@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 
 export default class Search extends Component {
-    redner() {
+    render() {
         return (
             <View>
                 <Text> Search </Text>
