@@ -10,10 +10,12 @@ import UIKit
 
 // modal view; slides up from bottom when opening
 class NowPlayingViewController: UIViewController {
+    
+    @IBOutlet weak var dismissModalButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -33,4 +35,10 @@ class NowPlayingViewController: UIViewController {
     }
     */
 
+    
+    @IBAction func handleModalClose(sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        print("dismissed")
+    }
 }

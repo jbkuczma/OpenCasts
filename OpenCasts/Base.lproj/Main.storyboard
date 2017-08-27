@@ -124,10 +124,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRT-RZ-xyU">
+                                <rect key="frame" x="160" y="539" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="handleModalCloseWithSender:" destination="xpp-oO-71j" eventType="touchUpInside" id="g7P-tl-8dY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Now Playing" image="second" id="hzQ-g9-tuO"/>
+                    <connections>
+                        <outlet property="dismissModalButton" destination="KRT-RZ-xyU" id="yZl-x4-SHv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7WS-F2-Ovo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

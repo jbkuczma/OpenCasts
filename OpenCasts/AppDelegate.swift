@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is NowPlayingViewController {
-            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "NowPlaying") {
-                tabBarController.present(newVC, animated: true)
+            if let nowPlayingVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "NowPlaying") {
+                tabBarController.present(nowPlayingVC, animated: true)
                 return false
             }
         }
