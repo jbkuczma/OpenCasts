@@ -36,6 +36,10 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
         
         episodeCollectionView.collectionViewLayout = gridLayout
         episodeCollectionView.reloadData()
+        
+        
+        
+        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
     }
 
     override func didReceiveMemoryWarning() {
