@@ -62,6 +62,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         /**************************/
     }
     
+    // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
         print("Value: \(categories[indexPath.row])")
@@ -71,6 +72,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         return categories.count
     }
     
+    // create cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(categories[indexPath.row])"

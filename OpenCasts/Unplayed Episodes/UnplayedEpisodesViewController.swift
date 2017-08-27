@@ -56,6 +56,7 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
         return images.count
     }
     
+    // create each cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "episodeCell", for: indexPath) as! EpisodeCollectionViewCell
         
@@ -68,6 +69,14 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         gridLayout.invalidateLayout()
+    }
+    
+    // fetch podcasts that are saved
+    func retrievePodcasts() -> [Any] {
+        let podcasts: [Any] = []
+        
+        
+        return podcasts
     }
 
 
