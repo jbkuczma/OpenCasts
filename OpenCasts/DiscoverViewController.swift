@@ -31,6 +31,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         
         searchInput = UISearchBar(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: 50))
         searchInput.placeholder = "Search"
+        searchInput.searchBarStyle = .minimal
         self.view.addSubview(searchInput) // add search input to window
     }
     
@@ -52,6 +53,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         categoryTableLabel.textAlignment = .center
         self.view.addSubview(categoryTableLabel)
         /**************************/
+        
         /* Create table */
         // height: displayHeight (height of window) - barHeight (height of statusBar) - tabBarHeight(height of tab nav bar at bottom) - 100 (two rows were being cut off)
         categoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight + 100, width: displayWidth, height: displayHeight - barHeight - tabBarHeight! - 100))
