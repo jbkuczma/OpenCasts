@@ -32,7 +32,14 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Podcasts"
+        title = "Podcasts" // set the title of the top nav item in view
+        let nav = self.navigationController?.navigationBar
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(
+            red: CGFloat(244/255.0),
+            green: CGFloat(67/255.0),
+            blue: CGFloat(54/255.0),
+            alpha: CGFloat(1.0)
+            )] // set color of nva title
         
         episodeCollectionView.collectionViewLayout = gridLayout
         episodeCollectionView.reloadData()

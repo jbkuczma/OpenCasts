@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Episodes-->
+        <!--Unplayed Episodes View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="UnplayedEpisodesViewController" customModule="OpenCasts" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,14 +77,14 @@
                             <constraint firstItem="lT5-FA-OB9" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ldF-fL-1O2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Episodes" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="Fn4-dc-PhY"/>
                     <connections>
                         <outlet property="episodeCollectionView" destination="lT5-FA-OB9" id="e71-M3-24Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="1688.8" y="-332.38380809595208"/>
         </scene>
         <!--Discover-->
         <scene sceneID="wg7-f3-ORb">
@@ -127,7 +127,9 @@
                                             <constraint firstAttribute="height" constant="45" id="x7H-KZ-akv"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="X"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="handleModalCloseWithSender:" destination="xpp-oO-71j" eventType="touchUpInside" id="40I-oE-Bfl"/>
                                         </connections>
@@ -136,10 +138,11 @@
                                         <rect key="frame" x="15" y="22.5" width="345" height="20.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ivf-xa-U4C" secondAttribute="trailing" constant="322" id="K4d-n6-GXb"/>
                                     <constraint firstItem="ivf-xa-U4C" firstAttribute="top" secondItem="Ne6-Ho-ePp" secondAttribute="top" constant="10" id="K9D-lH-xVo"/>
@@ -148,14 +151,14 @@
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Rn-iz-CCM" userLabel="Progress View">
                                 <rect key="frame" x="15" y="507" width="345" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-72-fSV" userLabel="Controls View">
                                 <rect key="frame" x="30" y="567" width="315" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ncx-72-fSV" firstAttribute="top" secondItem="7Rn-iz-CCM" secondAttribute="bottom" id="F3a-X0-LNz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ncx-72-fSV" secondAttribute="trailing" constant="14" id="J97-CQ-5EU"/>
@@ -186,7 +189,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="fOs-Qh-PsG" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="xpp-oO-71j" kind="relationship" relationship="viewControllers" id="TfW-gr-X1X"/>
                     </connections>
@@ -194,6 +197,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-500" y="51"/>
+        </scene>
+        <!--Episodes-->
+        <scene sceneID="l69-cl-NW8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fOs-Qh-PsG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Episodes" image="first" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="adh-7f-LjE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="uM1-Rg-QK0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CcQ-kH-0SO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="-332.38380809595208"/>
         </scene>
     </scenes>
     <resources>
