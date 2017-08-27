@@ -11,7 +11,7 @@ import UIKit
 class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private let categories: NSArray = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Science & Medicine", "Social", "Sports", "Technology", "TV & Film"]
-    private var categoryTAbleView: UITableView!
+    private var categoryTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +20,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        categoryTAbleView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        categoryTAbleView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryCell")
-        categoryTAbleView.dataSource = self
-        categoryTAbleView.delegate = self
-        self.view.addSubview(categoryTAbleView)
+        categoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        categoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryCell")
+        categoryTableView.dataSource = self
+        categoryTableView.delegate = self
+        self.view.addSubview(categoryTableView)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -37,7 +37,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(categories[indexPath.row])"
         return cell
     }
