@@ -86,6 +86,24 @@
             </objects>
             <point key="canvasLocation" x="1688.8" y="-332.38380809595208"/>
         </scene>
+        <!--Category Podcasts View Controller-->
+        <scene sceneID="XUX-Pl-mta">
+            <objects>
+                <viewController storyboardIdentifier="CategoryTop" id="ZUp-17-FeT" customClass="CategoryPodcastsViewController" customModule="OpenCasts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xP9-jv-9bK"/>
+                        <viewControllerLayoutGuide type="bottom" id="zov-jD-8hP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7vu-wN-mYL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQN-0i-yoj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1685" y="360"/>
+        </scene>
         <!--Discover-->
         <scene sceneID="wg7-f3-ORb">
             <objects>

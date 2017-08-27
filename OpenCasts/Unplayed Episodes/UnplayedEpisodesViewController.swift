@@ -39,7 +39,7 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
             green: CGFloat(67/255.0),
             blue: CGFloat(54/255.0),
             alpha: CGFloat(1.0)
-            )] // set color of nva title
+            )] // set color of nav title
         
         episodeCollectionView.collectionViewLayout = gridLayout
         episodeCollectionView.reloadData()
@@ -78,7 +78,7 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
         gridLayout.invalidateLayout()
     }
     
-    // fetch podcasts that are saved
+    // TODO: fetch podcasts that are saved
     func retrievePodcasts() -> [Any] {
         let podcasts: [Any] = []
         

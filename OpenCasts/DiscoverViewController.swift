@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     private let categories: NSArray = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Science & Medicine", "Social", "Sports", "Technology", "TV & Film"]
     
@@ -30,8 +30,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         let displayWidth: CGFloat = self.view.frame.width
         
         searchInput = UISearchBar(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: 50))
-        searchInput.placeholder = "Search"
+        searchInput.placeholder = "Search for a show"
         searchInput.searchBarStyle = .minimal
+        
+        searchInput.delegate = self
+        
         self.view.addSubview(searchInput) // add search input to window
     }
     
@@ -68,6 +71,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
         print("Value: \(categories[indexPath.row])")
+        // TODO: redirect to a new view with TAbleView of podcasts in that category. Probably will use iTunes Search API
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,6 +83,14 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(categories[indexPath.row])"
         return cell
+    }
+    
+    // search bar input
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar!) {
+        searchBar.resignFirstResponder() // hide keyboard after pressing search
+        let query: String = searchBar.text!
+        // TODO: redirect to a new view with TableView of podcasts pertaining to search. Probably will use Audiosear.ch
+        print(query)
     }
 
 }
