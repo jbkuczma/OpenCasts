@@ -10,7 +10,7 @@ import UIKit
 
 class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    private let categories: NSArray = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Science & Medicine", "Social", "Sports", "Technology", "TV & Film"]
+    private let categories: [String] = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Science & Medicine", "Social", "Sports", "Technology", "TV & Film"]
     
     private var categoryTableLabel: UILabel!
     private var categoryTableView: UITableView!
@@ -22,7 +22,13 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         createSearchInput()
         createCategoryTable()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.categoryTableView.allowsSelection = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func createSearchInput() {
@@ -71,7 +77,12 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
         print("Value: \(categories[indexPath.row])")
-        // TODO: redirect to a new view with TAbleView of podcasts in that category. Probably will use iTunes Search API
+        
+        let category: String = categories[indexPath.row]
+        let destinationVC = CategoryPodcastsViewController()
+        destinationVC.category = category
+        performSegue(withIdentifier: "categoryTop", sender: self)
+        // TODO: [x]redirect to a new view with TAbleView of podcasts in that category. [] look into why the category value is not being passed []Probably will use iTunes Search API
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

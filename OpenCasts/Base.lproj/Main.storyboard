@@ -97,14 +97,23 @@
                     <view key="view" contentMode="scaleToFill" id="7vu-wN-mYL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3o-Qu-3bU">
+                                <rect key="frame" x="166" y="323" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQN-0i-yoj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1685" y="360"/>
+            <point key="canvasLocation" x="2623.1999999999998" y="359.37031484257875"/>
         </scene>
-        <!--Discover-->
+        <!--Discover View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="DiscoverViewController" customModule="OpenCasts" customModuleProvider="target" sceneMemberID="viewController">
@@ -117,11 +126,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discover" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="iHV-Yd-zCh"/>
+                    <connections>
+                        <segue destination="ZUp-17-FeT" kind="show" identifier="categoryTop" id="GsI-qj-wI2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+            <point key="canvasLocation" x="1688.8" y="359.37031484257875"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="bY8-6w-Xn5">
@@ -208,7 +220,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="fOs-Qh-PsG" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="wpC-Qc-G9p" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="xpp-oO-71j" kind="relationship" relationship="viewControllers" id="TfW-gr-X1X"/>
                     </connections>
                 </tabBarController>
@@ -234,6 +246,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcQ-kH-0SO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-332.38380809595208"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="skQ-ZP-4Ab">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wpC-Qc-G9p" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="578-Ph-Tut">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="lVd-Mb-4UY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UtW-Oq-rZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
         </scene>
     </scenes>
     <resources>
