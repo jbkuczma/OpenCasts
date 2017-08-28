@@ -73,6 +73,11 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destinationVC = PodcastShowViewController()
+        performSegue(withIdentifier: "podcastShow", sender: self)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         gridLayout.invalidateLayout()
