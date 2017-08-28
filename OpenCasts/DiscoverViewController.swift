@@ -22,8 +22,11 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         createSearchInput()
         createCategoryTable()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.categoryTableView.allowsSelection = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,10 +80,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
         print("Value: \(categories[indexPath.row])")
-        
-        let category: String = categories[indexPath.row]
-        let destinationVC = CategoryPodcastsViewController()
-        destinationVC.category = category
         performSegue(withIdentifier: "categoryTop", sender: self)
     }
     
@@ -113,6 +112,5 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
 }
 
