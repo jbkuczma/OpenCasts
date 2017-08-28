@@ -82,7 +82,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         let destinationVC = CategoryPodcastsViewController()
         destinationVC.category = category
         performSegue(withIdentifier: "categoryTop", sender: self)
-        // TODO: [x]redirect to a new view with TAbleView of podcasts in that category. [] look into why the category value is not being passed []Probably will use iTunes Search API
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +101,17 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         let query: String = searchBar.text!
         // TODO: redirect to a new view with TableView of podcasts pertaining to search. Probably will use Audiosear.ch
         print(query)
+    }
+    
+    // segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "categoryTop" {
+            let vc = segue.destination as! CategoryPodcastsViewController
+            if let indexPath = self.categoryTableView.indexPathForSelectedRow {
+                let chosenCategory = categories[indexPath.row]
+                vc.category = chosenCategory
+            }
+        }
     }
 
 }

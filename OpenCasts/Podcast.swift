@@ -20,8 +20,8 @@ class Podcast {
     let genre: String!
     
     init(podcastName: String, podcastArtist: String, episodes: [Episode], genre: String) {
-        self.name = podcastName
-        self.artist = podcastArtist
+        self.podcastName = podcastName
+        self.podcastArtist = podcastArtist
         self.episodes = episodes
         self.genre = genre
     }
