@@ -31,7 +31,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         
         searchInput = UISearchBar(frame: CGRect(x: 0, y: 0, width: displayWidth, height: 50))
         searchInput.placeholder = "Search for a show"
-        searchInput.searchBarStyle = .minimal        
+        searchInput.searchBarStyle = .minimal
         searchInput.delegate = self
 
         self.navigationItem.titleView = searchInput // add search input to the naviagtion bar
