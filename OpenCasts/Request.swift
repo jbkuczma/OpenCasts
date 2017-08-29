@@ -28,21 +28,32 @@ class Request {
         return searchURL
     }
     
-    func search(query: String) {
+//    func search(query: String) {
+//        let url: URL = self.createSearchURL(query: query)
+//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//            guard error == nil else {
+//                print(error!)
+//                return
+//            }
+//            guard let data = data else {
+//                print("Data is empty")
+//                return
+//            }
+//            
+//            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+//            return json
+//        }
+//        task.resume()
+//    }
+    
+    func search(query: String, completion: @escaping (_ data: [String: Any]?) -> ()) {
         let url: URL = self.createSearchURL(query: query)
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                print(error!)
-                return
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
+            if let data = data {
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                completion(json)
             }
-            guard let data = data else {
-                print("Data is empty")
-                return
-            }
-            
-            let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
-        }
+        })
         task.resume()
     }
 }
