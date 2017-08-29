@@ -25,26 +25,16 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         self.categoryTableView.allowsSelection = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
     func createSearchInput() {
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         
-        searchInput = UISearchBar(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: 50))
+        searchInput = UISearchBar(frame: CGRect(x: 0, y: 0, width: displayWidth, height: 50))
         searchInput.placeholder = "Search for a show"
-        searchInput.searchBarStyle = .minimal
-        
+        searchInput.searchBarStyle = .minimal        
         searchInput.delegate = self
-        
-        self.view.addSubview(searchInput) // add search input to window
+
+        self.navigationItem.titleView = searchInput // add search input to the naviagtion bar
     }
     
     func createCategoryTable() {
