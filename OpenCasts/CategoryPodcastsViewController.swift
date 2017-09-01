@@ -12,11 +12,20 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     var category: String!
     var count: Int!
-    var episodes = [[String: Any]]() // array of dictionaries
+    var podcasts = [[String: Any]]() // array of dictionaries
     
     private var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
+        title = category
+        let nav = self.navigationController?.navigationBar
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(
+            red: CGFloat(244/255.0),
+            green: CGFloat(67/255.0),
+            blue: CGFloat(54/255.0),
+            alpha: CGFloat(1.0)
+            )]
+        
         super.viewDidLoad()
     }
     
@@ -53,14 +62,26 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.episodes.count
+        return self.podcasts.count
     }
     
-    // create cell for row
+    // create custom cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath) as! CategoryPodcastCollectionViewCell
+        let podcastRanking = indexPath.row + 1
+        let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
+        let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
+        let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
+//        cell.artistName = podcastArtist
+//        cell.imageSrc = podcastImage
+//        cell.title = podcastTitle
+//        cell.ranking = podcastRanking
+//        return cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath)
-        let podcastTitle = self.episodes[indexPath.row]["collectionName"] as! String
+//        let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
         cell.textLabel!.text = podcastTitle
+        let data = try? Data(contentsOf: URL(string: podcastImage)!)
+        cell.imageView?.image = UIImage(data: data!)
         return cell
     }
     
@@ -69,7 +90,7 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         let r = Request()
         r.search(query: category, completion: {(data) in
             self.count = data?["resultCount"] as! Int
-            self.episodes = data?["results"] as! [[String: Any]]
+            self.podcasts = data?["results"] as! [[String: Any]]
             completion()
         })
     }
