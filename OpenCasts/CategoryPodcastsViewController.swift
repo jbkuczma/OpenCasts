@@ -14,7 +14,8 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     var count: Int!
     var podcasts = [[String: Any]]() // array of dictionaries
     
-    private var podcastInCategoryTableView: UITableView!
+//    private var podcastInCategoryTableView: UITableView!
+    @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
         title = category
@@ -26,12 +27,16 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
             alpha: CGFloat(1.0)
             )]
         
+        podcastInCategoryTableView.delegate = self
+        podcastInCategoryTableView.dataSource = self
+        self.automaticallyAdjustsScrollViewInsets = false
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
-            self.createCategoryTable()
+//            self.createCategoryTable()
+            print("data loaded")
             self.podcastInCategoryTableView.reloadData()
         })
     }
@@ -41,20 +46,20 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         // Dispose of any resources that can be recreated.
     }
     
-    func createCategoryTable() {
-        let tabBarHeight = self.tabBarController?.tabBar.bounds.height
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
-        
-        /* Create table */
-        podcastInCategoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight + 50, width: displayWidth, height: displayHeight - barHeight - tabBarHeight!))
-        podcastInCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "PodcastCell")
-        podcastInCategoryTableView.dataSource = self
-        podcastInCategoryTableView.delegate = self
-        self.view.addSubview(podcastInCategoryTableView) // add table to window
-        /**************************/
-    }
+//    func createCategoryTable() {
+//        let tabBarHeight = self.tabBarController?.tabBar.bounds.height
+//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+//        let displayWidth: CGFloat = self.view.frame.width
+//        let displayHeight: CGFloat = self.view.frame.height
+//        
+//        /* Create table */
+//        podcastInCategoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight + 50, width: displayWidth, height: displayHeight - barHeight - tabBarHeight!))
+//        podcastInCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "PodcastCell")
+//        podcastInCategoryTableView.dataSource = self
+//        podcastInCategoryTableView.delegate = self
+//        self.view.addSubview(podcastInCategoryTableView) // add table to window
+//        /**************************/
+//    }
     
     // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,16 +77,18 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
         let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
         let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
-//        cell.artistName = podcastArtist
-//        cell.imageSrc = podcastImage
-//        cell.title = podcastTitle
-//        cell.ranking = podcastRanking
-//        return cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath)
-//        let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
-        cell.textLabel!.text = podcastTitle
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath)
+//        cell.textLabel!.text = podcastTitle
+//        let data = try? Data(contentsOf: URL(string: podcastImage)!)
+//        cell.imageView?.image = UIImage(data: data!)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath) as! CategoryPodcastCollectionViewCell
+        
+        cell.artistLabel.text = podcastArtist
+        cell.titleLabel.text = podcastTitle
+        
         let data = try? Data(contentsOf: URL(string: podcastImage)!)
-        cell.imageView?.image = UIImage(data: data!)
+        cell.podcastImage.image = UIImage(data: data!)
+        
         return cell
     }
     
