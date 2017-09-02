@@ -58,9 +58,11 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
         let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
         let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
+        let podcastReleaseDate = self.podcasts[indexPath.row]["releaseDate"] as! String
         let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath) as! CategoryPodcastCollectionViewCell
         
         cell.rankLabel.text = String(podcastRanking)
+        cell.releaseDataeLabel.text = self.cleanDate(date: podcastReleaseDate)
         cell.artistLabel.text = podcastArtist
         cell.titleLabel.text = podcastTitle
         
@@ -78,5 +80,16 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
             self.podcasts = data?["results"] as! [[String: Any]]
             completion()
         })
+    }
+    
+    private func cleanDate(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from: date)!
+        dateFormatter.dateFormat = "M-dd-yyyy"
+        dateFormatter.locale = tempLocale
+        return dateFormatter.string(from: date)
     }
 }

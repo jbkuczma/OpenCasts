@@ -15,5 +15,6 @@ class CategoryPodcastCollectionViewCell: UITableViewCell {
     @IBOutlet weak var podcastImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var releaseDataeLabel: UILabel!
     
 }
