@@ -8,12 +8,14 @@
 
 import UIKit
 
-class PodcastShowViewController: UIViewController {
+class PodcastShowViewController: UIViewController, XMLParserDelegate {
     
     var show: Podcast!
+    var episodes: [Episode] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(episodes.count)
 
         // Do any additional setup after loading the view.
     }
@@ -21,6 +23,14 @@ class PodcastShowViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("about to appear")
+        let p = Parser()
+        p.parseXML(url: URL(string: show.feedURL)!, completion: {(podcastData) in
+            print(podcastData)
+        })
     }
     
 
