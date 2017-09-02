@@ -14,6 +14,8 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     var count: Int!
     var podcasts = [[String: Any]]() // array of dictionaries
     
+    let cache = UserDefaults.standard
+    
     @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
@@ -78,11 +80,20 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     // fetch data
     private func getData(completion: @escaping() -> ()) {
         let r = Request()
-        r.search(query: category, completion: {(data) in
-            self.count = data?["resultCount"] as! Int
-            self.podcasts = data?["results"] as! [[String: Any]]
-            completion()
-        })
+        if let cachedVersion = self.cache.array(forKey: self.category) {
+            print("have cache version")
+            self.podcasts = cachedVersion as! [[String: Any]]
+        } else {
+            r.search(query: category, completion: {(data) in
+                self.count = data?["resultCount"] as! Int
+                self.podcasts = data?["results"] as! [[String: Any]]
+                self.cache.set(self.podcasts, forKey: self.category)
+                print("cached")
+                completion()
+            })
+        }
+        
+        
     }
     
     private func cleanDate(date: String) -> String {
