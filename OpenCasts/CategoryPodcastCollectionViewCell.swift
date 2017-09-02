@@ -10,14 +10,6 @@ import UIKit
 
 class CategoryPodcastCollectionViewCell: UITableViewCell {
     
-    // TODO: make iboutlet to categorypodcastsviewcontroller
-//    @IBOutlet weak var categoryPodcastsViewController: UITableViewCell!
-    
-//    var ranking: Int!
-//    var artistName: String!
-//    var title: String!
-//    var imageSrc: String!
-    
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var podcastImage: UIImageView!

@@ -14,7 +14,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     var count: Int!
     var podcasts = [[String: Any]]() // array of dictionaries
     
-//    private var podcastInCategoryTableView: UITableView!
     @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
@@ -35,8 +34,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
-//            self.createCategoryTable()
-            print("data loaded")
             self.podcastInCategoryTableView.reloadData()
         })
     }
@@ -45,21 +42,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func createCategoryTable() {
-//        let tabBarHeight = self.tabBarController?.tabBar.bounds.height
-//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-//        let displayWidth: CGFloat = self.view.frame.width
-//        let displayHeight: CGFloat = self.view.frame.height
-//        
-//        /* Create table */
-//        podcastInCategoryTableView = UITableView(frame: CGRect(x: 0, y: barHeight + 50, width: displayWidth, height: displayHeight - barHeight - tabBarHeight!))
-//        podcastInCategoryTableView.register(UITableViewCell.self, forCellReuseIdentifier: "PodcastCell")
-//        podcastInCategoryTableView.dataSource = self
-//        podcastInCategoryTableView.delegate = self
-//        self.view.addSubview(podcastInCategoryTableView) // add table to window
-//        /**************************/
-//    }
     
     // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,7 +54,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     // create custom cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath) as! CategoryPodcastCollectionViewCell
         let podcastRanking = indexPath.row + 1
         let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
         let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
