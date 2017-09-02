@@ -19,12 +19,14 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         title = category
         let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(
+        let openCastRed = UIColor(
             red: CGFloat(244/255.0),
             green: CGFloat(67/255.0),
             blue: CGFloat(54/255.0),
             alpha: CGFloat(1.0)
-            )]
+        )
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: openCastRed]
+        nav?.tintColor = openCastRed
         
         podcastInCategoryTableView.delegate = self
         podcastInCategoryTableView.dataSource = self
@@ -45,7 +47,8 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("clicked")
+            let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
+            print(feedURL)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
