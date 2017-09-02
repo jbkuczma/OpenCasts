@@ -77,12 +77,9 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
         let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
         let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath)
-//        cell.textLabel!.text = podcastTitle
-//        let data = try? Data(contentsOf: URL(string: podcastImage)!)
-//        cell.imageView?.image = UIImage(data: data!)
         let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastCell", for: indexPath as IndexPath) as! CategoryPodcastCollectionViewCell
         
+        cell.rankLabel.text = String(podcastRanking)
         cell.artistLabel.text = podcastArtist
         cell.titleLabel.text = podcastTitle
         

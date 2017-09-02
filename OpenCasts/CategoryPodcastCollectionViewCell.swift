@@ -19,6 +19,7 @@ class CategoryPodcastCollectionViewCell: UITableViewCell {
 //    var imageSrc: String!
     
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var podcastImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
