@@ -74,7 +74,6 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destinationVC = PodcastShowViewController()
         performSegue(withIdentifier: "podcastShow", sender: self)
     }
     
@@ -89,6 +88,13 @@ class UnplayedEpisodesViewController: UIViewController, UICollectionViewDelegate
         
         
         return podcasts
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "podcastShow" {
+            let vc = segue.destination as! PodcastShowViewController
+            
+        }
     }
 
 

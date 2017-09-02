@@ -89,7 +89,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         searchBar.resignFirstResponder() // hide keyboard after pressing search
         let query: String = searchBar.text!
         // TODO: redirect to a new view with TableView of podcasts pertaining to search. Probably will use Audiosear.ch
-        print(query)
     }
     
     // segue

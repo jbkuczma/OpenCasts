@@ -49,8 +49,7 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
-            print(feedURL)
+        performSegue(withIdentifier: "podcastShow", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,5 +104,19 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         dateFormatter.dateFormat = "M-dd-yyyy"
         dateFormatter.locale = tempLocale
         return dateFormatter.string(from: date)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "podcastShow" {
+            let vc = segue.destination as! PodcastShowViewController
+            if let indexPath = self.podcastInCategoryTableView.indexPathForSelectedRow {
+                let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
+                let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
+                let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
+                
+                let pod = Podcast(podcastName: podcastTitle, podcastImage: podcastImage, feedURL: feedURL)
+                vc.show = pod
+            }
+        }
     }
 }

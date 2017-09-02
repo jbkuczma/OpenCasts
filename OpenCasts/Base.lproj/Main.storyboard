@@ -173,11 +173,39 @@
                     </view>
                     <connections>
                         <outlet property="podcastInCategoryTableView" destination="qsC-ja-Wa5" id="Obn-d9-HeN"/>
+                        <segue destination="HFl-Ds-4ya" kind="show" identifier="podcastShow" id="iLF-nV-vAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQN-0i-yoj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2621.5999999999999" y="358.4707646176912"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a6i-mm-xQA">
+            <objects>
+                <viewController id="nDg-Wm-eoa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="axs-5b-bTs"/>
+                        <viewControllerLayoutGuide type="bottom" id="f5t-Ve-6L2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KkR-Vr-B6B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="woah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5V-ou-rKE">
+                                <rect key="frame" x="166" y="304" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ao8-d6-dGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3502" y="358"/>
         </scene>
         <!--Podcast Show View Controller-->
         <scene sceneID="uFJ-eV-iXR">
@@ -204,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8N8-e1-wWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="-523"/>
+            <point key="canvasLocation" x="3393" y="-524"/>
         </scene>
         <!--Discover View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -364,4 +392,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iLF-nV-vAe"/>
+    </inferredMetricsTieBreakers>
 </document>

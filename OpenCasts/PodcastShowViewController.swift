@@ -10,7 +10,7 @@ import UIKit
 
 class PodcastShowViewController: UIViewController {
     
-    var show: Any!
+    var show: Podcast!
 
     override func viewDidLoad() {
         super.viewDidLoad()
