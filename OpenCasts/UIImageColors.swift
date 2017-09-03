@@ -97,6 +97,20 @@ extension UIColor {
 }
 
 extension UIImage {
+    
+    //  Added this extension to easily create an iamge from a url
+    //
+    //  Created by James Kuczmarski on 9/3/17.
+    //  Copyright © 2017 James Kuczmarski. All rights reserved
+    func setImageWithURL(url: String) -> UIImage {
+        if let url = URL(string: url) {
+            if let data = try? Data(contentsOf: url) {
+                return UIImage(data: data)!
+            }
+        }
+        return UIImage()
+    }
+    
     private func resizeForUIImageColors(newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
         defer {
