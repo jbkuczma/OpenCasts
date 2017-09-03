@@ -14,7 +14,7 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     var count: Int!
     var podcasts = [[String: Any]]() // array of dictionaries
     
-    let cache = UserDefaults.standard
+    var cache: NSCache<NSString, AnyObject>! = nil
     
     @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
@@ -38,6 +38,8 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
+            self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
+            print("cached")
             self.podcastInCategoryTableView.reloadData()
         })
     }
@@ -79,19 +81,16 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     // fetch data
     private func getData(completion: @escaping() -> ()) {
         let r = Request()
-        if let cachedVersion = self.cache.array(forKey: self.category) {
+        if let cachedVersion = self.cache.object(forKey: category as NSString) {
             print("have cache version")
             self.podcasts = cachedVersion as! [[String: Any]]
         } else {
             r.search(query: category, completion: {(data) in
                 self.count = data?["resultCount"] as! Int
                 self.podcasts = data?["results"] as! [[String: Any]]
-                self.cache.set(self.podcasts, forKey: self.category)
-                print("cached")
                 completion()
             })
         }
-        
         
     }
     

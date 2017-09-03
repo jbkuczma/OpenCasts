@@ -10,11 +10,13 @@ import UIKit
 
 class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    private let categories: [String] = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Science & Medicine", "Social", "Sports", "Technology", "TV & Film"]
+    private let categories: [String] = ["All", "Arts", "Buisness", "Comedy", "Education", "Games & Hobbies", "Government", "Health", "Family", "Religious", "Svarnce & Medicine", "Social", "Sports", "Technology", "TV & Film"]
     
     private var categoryTableLabel: UILabel!
     private var categoryTableView: UITableView!
     private var searchInput: UISearchBar!
+    
+    let cache = NSCache<NSString, AnyObject>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             if let indexPath = self.categoryTableView.indexPathForSelectedRow {
                 let chosenCategory = categories[indexPath.row]
                 vc.category = chosenCategory
+                vc.cache = self.cache
             }
         }
     }
