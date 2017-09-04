@@ -123,7 +123,7 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
             if let indexPath = self.podcastInCategoryTableView.indexPathForSelectedRow {
                 let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
                 let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
-                let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
+                let podcastImage = self.podcasts[indexPath.row]["artworkUrl600"] as! String
                 let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
                 
 //                var image = UIImage()
