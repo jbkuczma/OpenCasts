@@ -12,12 +12,11 @@ class Parser: NSObject, XMLParserDelegate {
     
     let req = Request()
     var el: String = String() // for xml
-    var episode: Episode = Episode(title: "", date: "", duration: 0.0, url: "", description: "")
     var episodeTitle: String = String()
     var episodeDescription = String()
     var episodeDate = String()
     var episodeURL = String()
-    var episodeDuration = Float()
+    var episodeDuration = String()
     var episodes: [Episode] = []
     
     var podcastData = [String: Any]()
@@ -31,6 +30,7 @@ class Parser: NSObject, XMLParserDelegate {
             let parser = XMLParser(data: data!)
             parser.delegate = self
             parser.parse()
+            self.podcastData["episodes"] = self.episodes
             completion(self.podcastData)
         }
     }
@@ -40,21 +40,20 @@ class Parser: NSObject, XMLParserDelegate {
         if elementName == "item" {
             self.episodeTitle = String()
             self.episodeDescription = String()
-            self.episodeDuration = Float()
+            self.episodeDuration = String()
             self.episodeDate = String()
             self.episodeURL = String()
         }
     }
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            self.episode.title = episodeTitle
-            self.episode.date = episodeDate
-            self.episode.description = episodeDescription
-            self.episode.url = episodeURL
-            self.episode.duration = episodeDuration
+            let episode = Episode(title: "", date: "", duration: "", url: "", description: "")
+            episode.title = episodeTitle
+            episode.date = episodeDate
+            episode.description = episodeDescription
+            episode.url = episodeURL
+            episode.duration = episodeDuration
             self.episodes.append(episode)
-            
-            self.podcastData["episodes"] = self.episodes
         }
     }
     func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -68,10 +67,11 @@ class Parser: NSObject, XMLParserDelegate {
                 self.episodeDescription += data
             }
             if self.el == "itunes:duration" {
-                self.episodeDuration = Float(String(data)!)!
+                self.episodeDuration += String(data)!
             }
-            if self.el == "media:content" {
+            if self.el == "media:content" || self.el == "enclosure" {
                 self.episodeURL += data
+                print(self.episodeURL)
             }
             if self.el == "pubDate" {
                 self.episodeDate += data
