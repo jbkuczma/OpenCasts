@@ -39,12 +39,14 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         print("about to appear")
+        let nav = navigationController?.navigationBar
         ///////////////
         var image = UIImage()
         self.podcastImage.image = image.setImageWithURL(url: self.show.podcastImage)
         self.podcastTitle.text = self.show.podcastName
         self.podcastArtist.text = self.show.podcastArtist
         self.podcastImage.image!.getColors(completionHandler: {(colors) in
+            self.changeNavBar(isLeaving: false, colors: colors)
             self.headerView.backgroundColor = colors.background
             self.podcastTitle.textColor = colors.primary
             self.podcastArtist.textColor = colors.primary
@@ -57,6 +59,33 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
             print("have data")
             self.loader.stopAnimating()
         })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.changeNavBar(isLeaving: true, colors: nil)
+    }
+    
+    private func changeNavBar(isLeaving: Bool, colors: UIImageColors?) {
+        let nav = navigationController?.navigationBar
+        if isLeaving {
+            // reset navbar
+            nav?.isTranslucent = true
+            nav?.tintColor =  UIColor( // opencasts red
+                red: CGFloat(244/255.0),
+                green: CGFloat(67/255.0),
+                blue: CGFloat(54/255.0),
+                alpha: CGFloat(1.0)
+            )
+            nav?.barTintColor = nil
+            nav?.setBackgroundImage(_: nil, for: .any, barMetrics: .default)
+            nav?.shadowImage = nil
+        } else {
+            nav?.isTranslucent = false // remove translucency from navbar
+            nav?.tintColor = colors!.primary // make navbar text the same color of label text in view
+            nav?.barTintColor = colors!.background // make navbar background color primary color in podcast image
+            nav?.setBackgroundImage(_: UIImage(), for: .any, barMetrics: .default) // remove bottom line from navbar
+            nav?.shadowImage = UIImage() // remove bottom line from navbar
+        }
     }
     
 
