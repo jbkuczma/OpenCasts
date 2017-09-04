@@ -16,9 +16,19 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     var cache: NSCache<NSString, AnyObject>! = nil
     
+    var loader = LoadingIndicator()
+    
     @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
+        
+        var frame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50)
+        self.loader = LoadingIndicator(frame: frame)
+        self.loader.center = self.view.center
+        self.view.addSubview(loader)
+        self.loader.startAnimating()
+        podcastInCategoryTableView.isHidden = true
+        
         title = category
         let nav = self.navigationController?.navigationBar
         let openCastRed = UIColor(
@@ -41,6 +51,8 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
             self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
             print("cached")
             self.podcastInCategoryTableView.reloadData()
+            self.loader.stopAnimating()
+            self.podcastInCategoryTableView.isHidden = false
         })
     }
 
@@ -110,10 +122,18 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
             let vc = segue.destination as! PodcastShowViewController
             if let indexPath = self.podcastInCategoryTableView.indexPathForSelectedRow {
                 let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
+                let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
                 let podcastImage = self.podcasts[indexPath.row]["artworkUrl100"] as! String
                 let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
                 
-                let pod = Podcast(podcastName: podcastTitle, podcastImage: podcastImage, feedURL: feedURL)
+//                var image = UIImage()
+//                image = image.setImageWithURL(url: podcastImage)
+//                image.getColors(completionHandler: {(colors) in
+//                    vc.view.backgroundColor = colors.background
+//                })
+                
+                
+                let pod = Podcast(podcastName: podcastTitle, podcastArtist: podcastArtist, podcastImage: podcastImage, feedURL: feedURL)
                 vc.show = pod
             }
         }
