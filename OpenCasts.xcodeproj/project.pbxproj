@@ -26,6 +26,8 @@
 		1A863CD01F51DCA7003F4E37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A863CCE1F51DCA7003F4E37 /* LaunchScreen.storyboard */; };
 		1A863CDB1F51DCA7003F4E37 /* OpenCastsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A863CDA1F51DCA7003F4E37 /* OpenCastsTests.swift */; };
 		1A863CE61F51DCA7003F4E37 /* OpenCastsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A863CE51F51DCA7003F4E37 /* OpenCastsUITests.swift */; };
+		1AF1261A1F5C5F710089E8C0 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF126191F5C5F710089E8C0 /* UIImageColors.swift */; };
+		1AF1261E1F5CC1480089E8C0 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1261D1F5CC1480089E8C0 /* LoadingIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		1A863CE11F51DCA7003F4E37 /* OpenCastsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCastsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A863CE51F51DCA7003F4E37 /* OpenCastsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCastsUITests.swift; sourceTree = "<group>"; };
 		1A863CE71F51DCA7003F4E37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AF126191F5C5F710089E8C0 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		1AF1261D1F5CC1480089E8C0 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				1A71A1121F54B4AB002FCB81 /* Podcast.swift */,
 				1A71A1141F54B5B6002FCB81 /* Episode.swift */,
 				1A71A1161F55F2B5002FCB81 /* Parser.swift */,
+				1AF126191F5C5F710089E8C0 /* UIImageColors.swift */,
+				1AF1261D1F5CC1480089E8C0 /* LoadingIndicator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -358,6 +364,8 @@
 				1A71A1171F55F2B5002FCB81 /* Parser.swift in Sources */,
 				1A863CC81F51DCA7003F4E37 /* DiscoverViewController.swift in Sources */,
 				1A5E09CE1F5327D9007B97C6 /* NowPlayingViewController.swift in Sources */,
+				1AF1261A1F5C5F710089E8C0 /* UIImageColors.swift in Sources */,
+				1AF1261E1F5CC1480089E8C0 /* LoadingIndicator.swift in Sources */,
 				1A863CC41F51DCA7003F4E37 /* AppDelegate.swift in Sources */,
 				1A71A1191F5625A0002FCB81 /* CategoryPodcastCollectionViewCell.swift in Sources */,
 			);

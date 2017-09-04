@@ -15,8 +15,6 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(episodes.count)
-
         // Do any additional setup after loading the view.
     }
 
@@ -27,9 +25,14 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         print("about to appear")
+        print(self.show.podcastArtist)
+//        var frame: CGRect = CGRect(x: 0, y: 300, width: 100, height: 100)
+//        let l = LoadingIndicator(frame: frame)
+//        self.view.addSubview(l)
+//        l.startAnimating()
         let p = Parser()
         p.parseXML(url: URL(string: show.feedURL)!, completion: {(podcastData) in
-            print(podcastData)
+            print("have data")
         })
     }
     
