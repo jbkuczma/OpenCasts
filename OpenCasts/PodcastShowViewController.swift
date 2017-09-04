@@ -38,11 +38,11 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
         print("about to appear")
         let nav = navigationController?.navigationBar
         ///////////////
-        var image = UIImage()
-        self.podcastImage.image = image.setImageWithURL(url: self.show.podcastImage)
+        self.podcastImage.image = UIImage().setImageWithURL(url: self.show.podcastImage)
         self.podcastTitle.text = self.show.podcastName
         self.podcastArtist.text = self.show.podcastArtist
         self.podcastImage.image!.getColors(completionHandler: {(colors) in
@@ -62,6 +62,7 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
         self.changeNavBar(isLeaving: true, colors: nil)
     }
     
@@ -79,12 +80,17 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
             nav?.barTintColor = nil
             nav?.setBackgroundImage(_: nil, for: .any, barMetrics: .default)
             nav?.shadowImage = nil
+            nav?.barStyle = .default
         } else {
             nav?.isTranslucent = false // remove translucency from navbar
             nav?.tintColor = colors!.primary // make navbar text the same color of label text in view
             nav?.barTintColor = colors!.background // make navbar background color primary color in podcast image
             nav?.setBackgroundImage(_: UIImage(), for: .any, barMetrics: .default) // remove bottom line from navbar
             nav?.shadowImage = UIImage() // remove bottom line from navbar
+            if colors!.background.isDarkColor {
+                print("dark color")
+                nav?.barStyle = .black
+            }
         }
     }
     
