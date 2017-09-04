@@ -55,7 +55,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         return true
     }
-
-
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PodcastShowViewController: UIViewController, XMLParserDelegate {
+class PodcastShowViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, XMLParserDelegate {
     
     var show: Podcast!
     var episodes: [Episode] = []
@@ -18,16 +18,22 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var podcastArtist: UILabel!
     
+    @IBOutlet weak var episodeTable: UITableView!
+    
     var loader = LoadingIndicator()
 
     override func viewDidLoad() {
         var frame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50)
         self.loader = LoadingIndicator(frame: frame)
-        self.loader.center = self.view.center
+        self.loader.center = self.episodeTable.center
         self.view.addSubview(loader)
         self.headerView.isHidden = true
         self.loader.startAnimating()
 
+        episodeTable.delegate = self
+        episodeTable.dataSource = self
+        self.episodeTable.isHidden = true
+        self.automaticallyAdjustsScrollViewInsets = false
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -50,14 +56,16 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
             self.headerView.backgroundColor = colors.background
             self.podcastTitle.textColor = colors.primary
             self.podcastArtist.textColor = colors.primary
-            
             self.headerView.isHidden = false
         })
         
         let p = Parser()
         p.parseXML(url: URL(string: show.feedURL)!, completion: {(podcastData) in
             print("have data")
+            self.episodes = podcastData["episodes"] as! [Episode]
             self.loader.stopAnimating()
+            self.episodeTable.reloadData()
+            self.episodeTable.isHidden = false
         })
     }
     
@@ -95,14 +103,29 @@ class PodcastShowViewController: UIViewController, XMLParserDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK - episode table view
+    // handle clicking category
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("play")
     }
-    */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.episodes.count
+    }
+    
+    // create custom cell for row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let podcastTitle = self.episodes[indexPath.row].title as! String
+        print(podcastTitle)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastEpisodeCell", for: indexPath as IndexPath) as! EpisodeCell
+        cell.titleLabel.text = podcastTitle
+        return cell
+    }
 
+}
+
+
+class EpisodeCell: UITableViewCell {
+    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
 }

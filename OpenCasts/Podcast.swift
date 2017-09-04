@@ -15,11 +15,13 @@ import Foundation
 class Podcast {
     
     let podcastName: String!
+    let podcastArtist: String!
     let podcastImage: String!
     let feedURL: String!
     
-    init(podcastName: String, podcastImage: String, feedURL: String) {
+    init(podcastName: String, podcastArtist: String, podcastImage: String, feedURL: String) {
         self.podcastName = podcastName
+        self.podcastArtist = podcastArtist
         self.podcastImage = podcastImage
         self.feedURL = feedURL
     }

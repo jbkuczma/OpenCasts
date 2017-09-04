@@ -49,7 +49,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
             self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
-            print("cached")
             self.podcastInCategoryTableView.reloadData()
             self.loader.stopAnimating()
             self.podcastInCategoryTableView.isHidden = false
@@ -94,8 +93,9 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     private func getData(completion: @escaping() -> ()) {
         let r = Request()
         if let cachedVersion = self.cache.object(forKey: category as NSString) {
-            print("have cache version")
+            print("have cached version")
             self.podcasts = cachedVersion as! [[String: Any]]
+            completion()
         } else {
             r.search(query: category, completion: {(data) in
                 self.count = data?["resultCount"] as! Int
@@ -125,13 +125,6 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
                 let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
                 let podcastImage = self.podcasts[indexPath.row]["artworkUrl600"] as! String
                 let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
-                
-//                var image = UIImage()
-//                image = image.setImageWithURL(url: podcastImage)
-//                image.getColors(completionHandler: {(colors) in
-//                    vc.view.backgroundColor = colors.background
-//                })
-                
                 
                 let pod = Podcast(podcastName: podcastTitle, podcastArtist: podcastArtist, podcastImage: podcastImage, feedURL: feedURL)
                 vc.show = pod
