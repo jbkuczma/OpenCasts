@@ -60,12 +60,14 @@ class PodcastShowViewController: UIViewController, UITableViewDelegate, UITableV
         })
         
         let p = Parser()
-        p.parseXML(url: URL(string: show.feedURL)!, completion: {(podcastData) in
+        p.parseXML(url: URL(string: self.show.feedURL)!, completion: {(podcastData) in
             print("have data")
             self.episodes = podcastData["episodes"] as! [Episode]
-            self.loader.stopAnimating()
-            self.episodeTable.reloadData()
-            self.episodeTable.isHidden = false
+            DispatchQueue.main.async {
+                self.episodeTable.reloadData()
+                self.loader.stopAnimating()
+                self.episodeTable.isHidden = false
+            }
         })
     }
     
@@ -96,7 +98,6 @@ class PodcastShowViewController: UIViewController, UITableViewDelegate, UITableV
             nav?.setBackgroundImage(_: UIImage(), for: .any, barMetrics: .default) // remove bottom line from navbar
             nav?.shadowImage = UIImage() // remove bottom line from navbar
             if colors!.background.isDarkColor {
-                print("dark color")
                 nav?.barStyle = .black
             }
         }
@@ -116,7 +117,6 @@ class PodcastShowViewController: UIViewController, UITableViewDelegate, UITableV
     // create custom cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let podcastTitle = self.episodes[indexPath.row].title as! String
-        print(podcastTitle)
         let cell = tableView.dequeueReusableCell(withIdentifier: "PodcastEpisodeCell", for: indexPath as IndexPath) as! EpisodeCell
         cell.titleLabel.text = podcastTitle
         return cell
