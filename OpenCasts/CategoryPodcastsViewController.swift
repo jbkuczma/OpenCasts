@@ -48,10 +48,12 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
-            self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
-            self.podcastInCategoryTableView.reloadData()
-            self.loader.stopAnimating()
-            self.podcastInCategoryTableView.isHidden = false
+            DispatchQueue.main.async {
+                self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
+                self.podcastInCategoryTableView.reloadData()
+                self.loader.stopAnimating()
+                self.podcastInCategoryTableView.isHidden = false
+            }
         })
     }
 
