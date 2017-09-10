@@ -14,17 +14,31 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     var count: Int!
     var podcasts = [[String: Any]]() // array of dictionaries
     
+    var cache: NSCache<NSString, AnyObject>! = nil
+    
+    var loader = LoadingIndicator()
+    
     @IBOutlet weak var podcastInCategoryTableView: UITableView!
 
     override func viewDidLoad() {
+        
+        var frame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50)
+        self.loader = LoadingIndicator(frame: frame)
+        self.loader.center = self.view.center
+        self.view.addSubview(loader)
+        self.loader.startAnimating()
+        podcastInCategoryTableView.isHidden = true
+        
         title = category
         let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(
+        let openCastRed = UIColor(
             red: CGFloat(244/255.0),
             green: CGFloat(67/255.0),
             blue: CGFloat(54/255.0),
             alpha: CGFloat(1.0)
-            )]
+        )
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: openCastRed]
+        nav?.tintColor = openCastRed
         
         podcastInCategoryTableView.delegate = self
         podcastInCategoryTableView.dataSource = self
@@ -34,7 +48,12 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         self.getData(completion: {()
-            self.podcastInCategoryTableView.reloadData()
+            DispatchQueue.main.async {
+                self.cache.setObject(self.podcasts as AnyObject, forKey: self.category as NSString)
+                self.podcastInCategoryTableView.reloadData()
+                self.loader.stopAnimating()
+                self.podcastInCategoryTableView.isHidden = false
+            }
         })
     }
 
@@ -45,7 +64,7 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     
     // handle clicking category
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("clicked")
+        performSegue(withIdentifier: "podcastShow", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,11 +94,18 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
     // fetch data
     private func getData(completion: @escaping() -> ()) {
         let r = Request()
-        r.search(query: category, completion: {(data) in
-            self.count = data?["resultCount"] as! Int
-            self.podcasts = data?["results"] as! [[String: Any]]
+        if let cachedVersion = self.cache.object(forKey: category as NSString) {
+            print("have cached version")
+            self.podcasts = cachedVersion as! [[String: Any]]
             completion()
-        })
+        } else {
+            r.search(query: category, completion: {(data) in
+                self.count = data?["resultCount"] as! Int
+                self.podcasts = data?["results"] as! [[String: Any]]
+                completion()
+            })
+        }
+        
     }
     
     private func cleanDate(date: String) -> String {
@@ -91,5 +117,20 @@ class CategoryPodcastsViewController: UIViewController, UITableViewDelegate, UIT
         dateFormatter.dateFormat = "M-dd-yyyy"
         dateFormatter.locale = tempLocale
         return dateFormatter.string(from: date)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "podcastShow" {
+            let vc = segue.destination as! PodcastShowViewController
+            if let indexPath = self.podcastInCategoryTableView.indexPathForSelectedRow {
+                let podcastTitle = self.podcasts[indexPath.row]["collectionName"] as! String
+                let podcastArtist = self.podcasts[indexPath.row]["artistName"] as! String
+                let podcastImage = self.podcasts[indexPath.row]["artworkUrl600"] as! String
+                let feedURL = self.podcasts[indexPath.row]["feedUrl"] as! String
+                
+                let pod = Podcast(podcastName: podcastTitle, podcastArtist: podcastArtist, podcastImage: podcastImage, feedURL: feedURL)
+                vc.show = pod
+            }
+        }
     }
 }

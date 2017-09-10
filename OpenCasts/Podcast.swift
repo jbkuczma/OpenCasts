@@ -16,13 +16,13 @@ class Podcast {
     
     let podcastName: String!
     let podcastArtist: String!
-    let episodes: [Episode]!
-    let genre: String!
+    let podcastImage: String!
+    let feedURL: String!
     
-    init(podcastName: String, podcastArtist: String, episodes: [Episode], genre: String) {
+    init(podcastName: String, podcastArtist: String, podcastImage: String, feedURL: String) {
         self.podcastName = podcastName
         self.podcastArtist = podcastArtist
-        self.episodes = episodes
-        self.genre = genre
+        self.podcastImage = podcastImage
+        self.feedURL = feedURL
     }
 }

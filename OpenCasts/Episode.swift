@@ -14,13 +14,13 @@ import Foundation
  */
 class Episode {
     
-    let title: String!
-    let date: String!
-    let duration: Float!
-    let url: String!
-    let description: String!
+    var title: String!
+    var date: String!
+    var duration: String!
+    var url: String!
+    var description: String!
     
-    init(title: String, date: String, duration: Float, url: String, description: String) {
+    init(title: String, date: String, duration: String, url: String, description: String) {
         self.title = title
         self.date = date
         self.duration = duration

@@ -16,6 +16,8 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     private var categoryTableView: UITableView!
     private var searchInput: UISearchBar!
     
+    let cache = NSCache<NSString, AnyObject>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +91,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         searchBar.resignFirstResponder() // hide keyboard after pressing search
         let query: String = searchBar.text!
         // TODO: redirect to a new view with TableView of podcasts pertaining to search. Probably will use Audiosear.ch
-        print(query)
     }
     
     // segue
@@ -99,6 +100,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
             if let indexPath = self.categoryTableView.indexPathForSelectedRow {
                 let chosenCategory = categories[indexPath.row]
                 vc.category = chosenCategory
+                vc.cache = self.cache
             }
         }
     }

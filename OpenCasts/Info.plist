@@ -49,5 +49,7 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+	<key>View controller-based status bar appearance</key>
+	<string>NO</string>
 </dict>
 </plist>
