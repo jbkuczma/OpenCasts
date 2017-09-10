@@ -210,7 +210,7 @@
         <!--Podcast Show View Controller-->
         <scene sceneID="uFJ-eV-iXR">
             <objects>
-                <viewController storyboardIdentifier="PodcastShow" id="HFl-Ds-4ya" customClass="PodcastShowViewController" customModule="OpenCasts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PodcastShow" extendedLayoutIncludesOpaqueBars="YES" id="HFl-Ds-4ya" customClass="PodcastShowViewController" customModule="OpenCasts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E5Q-co-5st"/>
                         <viewControllerLayoutGuide type="bottom" id="R5b-pE-WIF"/>
